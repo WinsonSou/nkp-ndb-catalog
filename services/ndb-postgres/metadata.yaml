@@ -1,0 +1,11 @@
+displayName: NDB - PostgreSQLaaS
+description: The Veeam Kasten data management platform, purpose-built for Kubernetes, provides enterprise operations teams an easy-to-use, scalable, and secure system for backup/restore, disaster recovery, and mobility of Kubernetes applications.
+category:
+  - Databases
+type: catalog
+allowMultipleInstances: true
+scope:
+  - workspace
+  - project
+overview: |-
+icon: 
