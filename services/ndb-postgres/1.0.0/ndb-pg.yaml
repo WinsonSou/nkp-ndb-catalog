@@ -1,0 +1,53 @@
+apiVersion: ndb.nutanix.com/v1alpha1
+kind: Database
+metadata:
+  # This name that will be used within the kubernetes cluster
+  name: ${releaseName}
+spec:
+  # Name of the NDBServer resource created earlier
+  ndbRef: ndb
+  isClone: false
+  # Database instance specific details (that is to be provisioned)
+  databaseInstance:
+    # Cluster Name or cluster ID where the Database has to be provisioned
+    # Can be fetched from the GET /clusters endpoint
+    clusterName: "PHX-POC213" # Recommended: Use cluster name
+    # clusterId: "Nutanix Cluster UUID"         # Alternative: Use cluster UUID
+    # The database instance name on NDB
+    name: "ndb-operator-demo"
+    # The description of the database instance
+    description: Database Description
+    # Names of the databases on that instance
+    databaseNames:
+      - db
+    # Credentials secret name for NDB installation
+    # data: password, ssh_public_key
+    credentialSecret: db-instance-secret-name
+    size: 10
+    timezone: "UTC"
+    type: postgres
+
+    # You can specify any (or none) of these types of profiles: compute, software, network, dbParam
+    # If not specified, the corresponding Out-of-Box (OOB) profile will be used wherever applicable
+    # Name is case-sensitive. ID is the UUID of the profile. Profile should be in the "READY" state
+    # "id" & "name" are optional. If none provided, OOB may be resolved to any profile of that type
+    profiles:
+      compute:
+        name: "DEFAULT_HA_COMPUTE"
+      # A Software profile is a mandatory input for closed-source engines: SQL Server & Oracle
+      software:
+        name: "POSTGRES_15.6_ROCKY_LINUX_8_OOB"
+      network:
+        name: "CUSTOM_POSTGRESQL_NETWORK"
+      dbParam:
+        name: "DEFAULT_POSTGRES_PARAMS"
+    timeMachine: # Optional block, if removed the SLA defaults to NONE
+      sla: "DEFAULT_OOB_GOLD_SLA"
+      dailySnapshotTime: "12:34:56" # Time for daily snapshot in hh:mm:ss format
+      snapshotsPerDay: 4 # Number of snapshots per day
+      logCatchUpFrequency: 90 # Frequency (in minutes)
+      weeklySnapshotDay: "WEDNESDAY" # Day of the week for weekly snapshot
+      monthlySnapshotDay: 24 # Day of the month for monthly snapshot
+      quarterlySnapshotMonth: "Jan" # Start month of the quarterly snapshot
+    additionalArguments: # Optional block, can specify additional arguments that are unique to database engines.
+      listener_port: "8080"
