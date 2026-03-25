@@ -15,7 +15,7 @@ spec:
     clusterName: "PHX-POC213" # Recommended: Use cluster name
     # clusterId: "Nutanix Cluster UUID"         # Alternative: Use cluster UUID
     # The database instance name on NDB
-    name: "ndb-operator-demo"
+    name: ${releaseName}-db
     # The description of the database instance
     description: Database Description
     # Names of the databases on that instance
