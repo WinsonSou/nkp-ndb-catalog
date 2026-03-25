@@ -52,3 +52,13 @@ spec:
       quarterlySnapshotMonth: "Jan" # Start month of the quarterly snapshot
     additionalArguments: # Optional block, can specify additional arguments that are unique to database engines.
       listener_port: "8080"
+---
+#Sample secret only
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-instance-secret-name
+type: Opaque
+stringData:
+  password: ntnx/4NDB
+  ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCerUlmmalUkJ7Nj75y/vGbvNkNtFpffq/6oADT1wjE2UhU4EQhz7zeXtNp9raCclbaqU4ATWLyPzcJLCozBvIB/QWSYQQcBuL1NPZ2HCXSvyQ7ffJlw8C2cifFzS7XCpOiS6cwAag0+0I9tOOiC7mZX1q8sTHzgdv7WpVB9ozIDhFY8bZu8uJx+Doh8fXr6qUZCJ0L1Ks9tXchJR8ocwsCxNwnI+YMgIty/ogUeERv17uiuxS5HuyzWJ6XNcAF5WP0qbrVZlmd5+ls31JMYhySwuHPoEwI5b8+2+esygcZb82KzFq3B/w/Y1eQsZ634gWubmzudrY06brMuoUkTRmuksQ/ApajgQ0J3d3WO/18JGbQWMaQM+ewHKqcyUcXjn/yRJjo2Oq6g3uptfdHPrYM946mLFl0zdGvOobYd6k6fUIjWbI6SxvZeH0o8cHiIq66cutJ2dy3gOYvDJxf/m9DJewO02J4intM7hVm+818AwsBSgdeyf8zBfH89tzt8Gc=
