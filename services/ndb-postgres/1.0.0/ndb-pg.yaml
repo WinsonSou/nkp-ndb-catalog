@@ -58,6 +58,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: db-instance-secret-name
+  namespace: ${releaseNamespace}
 type: Opaque
 stringData:
   password: ntnx/4NDB
