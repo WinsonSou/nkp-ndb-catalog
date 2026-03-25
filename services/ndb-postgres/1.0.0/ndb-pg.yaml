@@ -3,6 +3,7 @@ kind: Database
 metadata:
   # This name that will be used within the kubernetes cluster
   name: ${releaseName}
+  namespace: ${releaseNamespace}
 spec:
   # Name of the NDBServer resource created earlier
   ndbRef: ndb
